@@ -58,7 +58,8 @@ export default function About() {
         </div>
         <h2 className="text-2xl font-bold mb-3">Contact </h2>
         <p className="text-lg mb-8">
-          Feel free to <a href="ghangka.s@gmail.com">reach out via email</a> or
+          Feel free to
+          {/* <a href="ghangka.s@gmail.com">reach out via email</a> or */}
           connect with me on{" "}
           <a href="https://www.linkedin.com/in/ghangka/">LinkedIn</a>.
         </p>
