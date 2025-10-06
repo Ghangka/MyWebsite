@@ -109,11 +109,13 @@ export default function Travel() {
                 className=" aspect-[3/4] overflow-hidden rounded-md hover:shadow-lg 
             transform transition-transform duration-300 hover:scale-105"
               >
-                <img
-                  src={photo.image}
-                  // alt={photo.alt}
-                  className="w-full h-full object-cover"
-                />
+                <a href={photo.image} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={photo.image}
+                    // alt={photo.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </a>
               </div>
             ))}
         </div>
