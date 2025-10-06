@@ -58,7 +58,15 @@ export default function About() {
         <h2 className="text-2xl font-bold mb-3">Contact </h2>
         <p className="text-lg">
           Feel free to connect with me on{" "}
-          <a href="https://www.linkedin.com/in/ghangka/">LinkedIn</a>.
+          <a
+            className="hover:text-blue-600 transition-colors duration-200"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/ghangka/"
+          >
+            LinkedIn
+          </a>
+          .
         </p>
       </div>
     </div>

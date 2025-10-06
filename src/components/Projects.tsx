@@ -22,7 +22,8 @@ const projects = [
     name: "TicTacToe Game",
     technologies: "JavaScript, HTML, CSS",
     image: tictactoe,
-    github: "https://github.com/Ghangka/Javascript-Projects",
+    github:
+      "https://github.com/Ghangka/Javascript-Projects/tree/main/TicTacToe",
   },
 ];
 
@@ -35,7 +36,7 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="bg-[#525252] p-6 rounded-lg hover:shadow-lg 
+              className="bg-[#A9C4E2] p-6 rounded-lg hover:shadow-lg 
             transform transition-transform duration-300 hover:scale-105"
             >
               <img
@@ -44,13 +45,13 @@ export default function Projects() {
                 className="rounded-lg mb-4 
               w-full h-48 object-cover"
               />
-              <h3 className="text-2xl text-white font-bold mb-2">
+              <h3 className="text-2xl text-[#525252] font-bold mb-2">
                 {project.name}
               </h3>
-              <p className="text-white mb-4">{project.technologies}</p>
+              <p className="text-[#525252] mb-4">{project.technologies}</p>
               <a
                 href={project.github}
-                className="inline-block bg-[#F5F2EC] text-[#525252] px-4 py-2 rounded-full"
+                className="inline-block bg-[#598CBE] text-white px-4 py-2 rounded-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >

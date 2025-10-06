@@ -9,15 +9,17 @@ import Projects from "./components/Projects";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/travel" element={<Travel />} />
-          <Route path="/project" element={<Projects />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="min-h-screen bg-[#F5F2EC]">
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/travel" element={<Travel />} />
+            <Route path="/project" element={<Projects />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }
