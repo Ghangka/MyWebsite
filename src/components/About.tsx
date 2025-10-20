@@ -1,17 +1,30 @@
 export default function About() {
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] py-10" id="about">
+    <div className="bg-[#F5F2EC] text-[#525252] pt-10" id="about">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h1 className="text-4xl font-bold text-center mb-12">About Me</h1>
-        <p className="text-lg mb-8">
-          I'm a passionate software developer based in Toronto, Canada. I
-          specialize in building high-quality web applications using modern
-          technologies like React, TypeScript, and Node.js.
+        <h1 className="text-4xl font-bold text-center mb-6">About Me</h1>
+        <p className="text-lg mx-auto text-left max-w-3xl mb-6">
+          I specialize in building high-quality web applications using modern
+          technologies like React, TypeScript, and Node.js. Based in Toronto,
+          I’m currently seeking new grad opportunities where I can grow as an
+          engineer and contribute to products that make a difference.
         </p>
-        <p className="text-lg mb-8">
+        <p className="text-lg mx-auto text-left max-w-3xl mb-6">
           With a strong background in computer science and a keen eye for
           design, I enjoy creating solutions that are both functional and
           visually appealing. When I'm not coding, you can find me travelling!
+        </p>
+        <p className="text-lg ">
+          Feel free to connect with me on{" "}
+          <a
+            className="hover:text-[#4878A7] transition-colors duration-200"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/ghangka/"
+          >
+            LinkedIn↗
+          </a>
+          !
         </p>
         {/* <h2
           className="text-2xl font-bold text-transparent bg-clip-text 
@@ -55,19 +68,7 @@ export default function About() {
             <p>Happy Clients</p>
           </div>
         </div> */}
-        <h2 className="text-2xl font-bold mb-3">Contact </h2>
-        <p className="text-lg">
-          Feel free to connect with me on{" "}
-          <a
-            className="hover:text-blue-600 transition-colors duration-200"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/ghangka/"
-          >
-            LinkedIn
-          </a>
-          .
-        </p>
+        {/* <h2 className="text-2xl font-bold mb-3">Contact </h2> */}
       </div>
     </div>
   );

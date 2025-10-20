@@ -12,6 +12,7 @@ import mountRobson from "../assets/Banff/mountRobson.jpg";
 import peytoLake from "../assets/Banff/peytoLake.jpg";
 import waterfallJasper from "../assets/Banff/waterfallJasper.jpg";
 import woods from "../assets/Banff/woods.jpg";
+import Footer from "./Footer";
 
 const images = [
   {
@@ -73,8 +74,8 @@ const images = [
 
 export default function Travel() {
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] py-20" id="travel">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
+    <div className="bg-[#F5F2EC] text-[#525252] pt-20" id="travel">
+      <div className="container mx-auto px-8 md:px-16 pb-20 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12">Gallery</h2>
         <h1 className="text-1xl  text-center mb-12">
           This is a gallery of some photos I took during my travels. Currently
@@ -120,6 +121,7 @@ export default function Travel() {
             ))}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

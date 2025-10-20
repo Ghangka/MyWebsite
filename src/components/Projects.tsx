@@ -1,6 +1,7 @@
 import tictactoe from "../assets/tictactoe.png";
 import phPerfect from "../assets/phPerfect.png";
 import toDo from "../assets/ToDo.png";
+import Footer from "./Footer";
 
 const projects = [
   {
@@ -29,9 +30,9 @@ const projects = [
 
 export default function Projects() {
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] py-20" id="project">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
+    <div className="bg-[#F5F2EC] text-[#525252] pt-20" id="project">
+      <div className="container mx-auto px-8 md:px-16 pb-30 lg:px-24">
+        <h2 className="text-4xl font-bold text-center mb-20">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
@@ -61,6 +62,7 @@ export default function Projects() {
           ))}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
