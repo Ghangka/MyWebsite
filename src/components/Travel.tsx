@@ -77,7 +77,7 @@ export default function Travel() {
     <div className="bg-[#F5F2EC] text-[#525252] pt-20" id="travel">
       <div className="container mx-auto px-8 md:px-16 pb-20 lg:px-24">
         <h2 className="text-4xl font-bold text-center mb-12">Gallery</h2>
-        <h1 className="text-1xl  text-center mb-12">
+        <h1 className="text-lg mx-auto text-left max-w-6xl text-gray-700 mb-12">
           This is a gallery of some photos I took during my travels. Currently
           displayed are pictures from Banff National Park, Canada and Iceland.
         </h1>

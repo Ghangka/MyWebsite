@@ -14,7 +14,7 @@ export default function About() {
           design, I enjoy creating solutions that are both functional and
           visually appealing. When I'm not coding, you can find me travelling!
         </p>
-        <p className="text-lg ">
+        <p className="text-lg mx-auto text-left max-w-3xl">
           Feel free to connect with me on{" "}
           <a
             className="hover:text-[#4878A7] transition-colors duration-200"
