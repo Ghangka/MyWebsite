@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Travel from "./components/Travel";
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div className="min-h-screen bg-[#F5F2EC]">
-        <BrowserRouter>
+        <HashRouter>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -18,7 +18,7 @@ function App() {
             <Route path="/travel" element={<Travel />} />
             <Route path="/project" element={<Projects />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </>
   );
