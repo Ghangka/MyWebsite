@@ -1,42 +1,104 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const [solid, setSolid] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const fn = () => setSolid(window.scrollY > 50);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  const active = (p: string) => location.pathname === p;
+
   return (
-    <>
-      <nav className="bg-[#A9C4E2] text-[#525252] p-3 px-8 md:px-16 lg:px-24">
-        <div className="container py-2 flex justify-center md:justify-between items-center">
-          <Link to="/" className="hover:text-[#598CBE]">
-            <div className="text-[#4878A7] text-2xl font-bold hidden md:inline">
-              Ghangka S.
-            </div>
-          </Link>
-          <div className="space-x-6 text-[#525252]">
-            <Link to="/" className="hover:text-[#598CBE]">
-              Home
-            </Link>
-            {/* <Link to="#about" className="hover:text-[#598CBE]">
-              About Me
-            </Link> */}
-            <Link to="/project" className="hover:text-[#598CBE]">
-              Projects
-            </Link>
-            {/* <Link to="/contact" className="hover:text-[#598CBE]">
-              Contact
-            </Link> */}
-            <Link to="/travel" className="hover:text-[#598CBE]">
-              Travel
-            </Link>
-          </div>
-          <a href="mailto:ghangka.s@gmail.com">
-            <button
-              className="bg-[#598CBE] text-white hidden md:inline
-            transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
+    <header
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        transition: "background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease",
+        background: solid ? "rgba(12, 11, 9, 0.92)" : "transparent",
+        backdropFilter: solid ? "blur(16px)" : "none",
+        WebkitBackdropFilter: solid ? "blur(16px)" : "none",
+        borderBottom: solid ? "1px solid var(--border)" : "1px solid transparent",
+      }}
+    >
+      <div
+        className="container-main"
+        style={{
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Logo */}
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+            <div
+              style={{
+                width: "28px",
+                height: "28px",
+                borderRadius: "6px",
+                background: "var(--orange)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              Contact Me
+              <span
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.7rem",
+                  fontWeight: 700,
+                  color: "var(--bg)",
+                  lineHeight: 1,
+                }}
+              >
+                GS
+              </span>
+            </div>
+            <span
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "0.78rem",
+                color: "var(--text-2)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              ghangka
+            </span>
+          </div>
+        </Link>
+
+        {/* Nav links */}
+        <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+          {[
+            { path: "/", label: "home" },
+            { path: "/project", label: "projects" },
+            { path: "/travel", label: "travel" },
+          ].map(({ path, label }) => (
+            <Link
+              key={path}
+              to={path}
+              className={`nav-link${active(path) ? " active" : ""}`}
+            >
+              {label}
+            </Link>
+          ))}
+
+          <a href="mailto:ghangka.s@gmail.com" style={{ textDecoration: "none" }}>
+            <button className="btn btn-fill" style={{ padding: "8px 18px", fontSize: "0.7rem" }}>
+              hire me
             </button>
           </a>
-        </div>
-      </nav>
-    </>
+        </nav>
+      </div>
+    </header>
   );
 }

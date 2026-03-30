@@ -4,44 +4,90 @@ import githubIcon from "../assets/githubIcon.png";
 
 export default function Footer() {
   return (
-    <>
-      <nav className="bg-[#A9C4E2] text-[#525252] p-3 px-8 md:px-16 lg:px-24">
-        <div className="container p-2 flex justify-center md:justify-between items-center">
-          <Link to="/" className="hover:text-[#598CBE]">
-            <div className="text-[#4878A7] text-2xl font-bold hidden md:inline">
-              Ghangka S.
+    <footer style={{ padding: "2.5rem 0" }}>
+      <div
+        className="container-main"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "1rem",
+        }}
+      >
+        {/* Left */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <div
+              style={{
+                width: "26px",
+                height: "26px",
+                borderRadius: "5px",
+                background: "var(--orange)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.62rem",
+                  fontWeight: 700,
+                  color: "var(--bg)",
+                }}
+              >
+                GS
+              </span>
             </div>
-            <p className="text-sm pt-2 dark:text-[#525252]">
-              © {new Date().getFullYear()} Ghangka. Built with React &
-              TypeScript.
-            </p>
           </Link>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://www.linkedin.com/in/ghangka/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-80 transition"
-            >
-              <img src={linkedInIcon} alt="LinkedIn" className="h-7 w-7" />
-            </a>
-            <a
-              href="https://github.com/Ghangka"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:opacity-80 transition"
-            >
-              <img src={githubIcon} alt="GitHub" className="h-7 w-7" />
-            </a>
-          </div>
-          {/* <button
-            className="bg-[#598CBE] text-white hidden md:inline
-            transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
+          <p
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.68rem",
+              color: "var(--text-3)",
+              letterSpacing: "0.04em",
+            }}
           >
-            Contact Me
-          </button> */}
+            © {new Date().getFullYear()} Ghangka — Built with React & TypeScript
+          </p>
         </div>
-      </nav>
-    </>
+
+        {/* Right */}
+        <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
+          <a
+            href="https://www.linkedin.com/in/ghangka/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ opacity: 0.4, transition: "opacity 0.2s" }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.4")}
+          >
+            <img src={linkedInIcon} alt="LinkedIn" style={{ height: "20px", width: "20px" }} />
+          </a>
+          <a
+            href="https://github.com/Ghangka"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ opacity: 0.4, transition: "opacity 0.2s" }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.4")}
+          >
+            <img src={githubIcon} alt="GitHub" style={{ height: "20px", width: "20px" }} />
+          </a>
+          <a
+            href="mailto:ghangka.s@gmail.com"
+            className="link"
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.68rem",
+              letterSpacing: "0.02em",
+            }}
+          >
+            ghangka.s@gmail.com
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }

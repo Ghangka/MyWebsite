@@ -1,75 +1,113 @@
+import { useEffect, useRef } from "react";
+
+const skills = [
+  "React", "TypeScript", "JavaScript", "React Native",
+  "Node.js", "Express", "Python", "REST APIs",
+  "HTML & CSS", "Tailwind CSS", "Vite", "Git & GitHub",
+  "Figma", "Responsive Design", "Accessibility",
+];
+
 export default function About() {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
+      { threshold: 0.1 }
+    );
+    ref.current?.querySelectorAll(".sr").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] pt-10" id="about">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h1 className="text-4xl font-bold text-center mb-6">About Me</h1>
-        <p className="text-lg mx-auto text-left max-w-3xl mb-6">
-          I specialize in building high-quality web applications using modern
-          technologies like React, TypeScript, and Node.js. Based in Toronto,
-          I’m currently seeking new grad opportunities where I can grow as an
-          engineer and contribute to products that make a difference.
-        </p>
-        <p className="text-lg mx-auto text-left max-w-3xl mb-6">
-          With a strong background in computer science and a keen eye for
-          design, I enjoy creating solutions that are both functional and
-          visually appealing. When I'm not coding, you can find me travelling!
-        </p>
-        <p className="text-lg mx-auto text-left max-w-3xl">
-          Feel free to connect with me on{" "}
-          <a
-            className="hover:text-[#4878A7] transition-colors duration-200"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/ghangka/"
-          >
-            LinkedIn↗
-          </a>
-          !
-        </p>
-        {/* <h2
-          className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-[#525252]"
-        >
-          Skills
-        </h2>
-        <ul>
-          <li> * React / TypeScript</li>
-          <li> * Node.js / Express</li>
-          <li> * HTML / CSS / SASS</li>
-          <li> * Git &amp; GitHub</li>
-          <li> * REST APIs</li>
-        </ul> */}
-        {/* <div className="m-12 flex justify-between text-center"> */}
-        {/* <div>
-            <h3
-              className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-gradient-to-r from-green-400 to-blue-500"
-            >
-              3+
-            </h3>
-            <p>Years Experience</p>
-          </div>
+    <section ref={ref} id="about" style={{ padding: "7rem 0" }}>
+      <div className="container-main">
+        <div className="about-layout">
+          {/* ── Left: text ── */}
           <div>
-            <h3
-              className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-gradient-to-r from-green-400 to-blue-500"
-            >
-              50+
-            </h3>
-            <p>Projects Completed</p>
+            <div className="sr" style={{ position: "relative", marginBottom: "2rem" }}>
+              <span
+                className="big-number"
+                style={{ fontSize: "clamp(5rem, 10vw, 8rem)", top: "-0.3em", right: "-0.1em", opacity: 0.4 }}
+              >
+                01
+              </span>
+              <p className="eyebrow">About Me</p>
+              <h2 className="display-heading" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+                Building things<br />
+                <span className="gradient-text">people love</span> to use.
+              </h2>
+              <span className="accent-line" />
+            </div>
+
+            <div className="sr" style={{ transitionDelay: "0.1s" }}>
+              <p style={{ color: "var(--text-2)", lineHeight: 1.85, marginBottom: "1rem", fontSize: "0.95rem" }}>
+                I'm a Front-End Developer based in{" "}
+                <span style={{ color: "var(--text)" }}>Toronto</span> and a recent
+                Computer Engineering graduate from the{" "}
+                <span style={{ color: "var(--text)" }}>University of Waterloo</span>.
+              </p>
+              <p style={{ color: "var(--text-2)", lineHeight: 1.85, marginBottom: "1rem", fontSize: "0.95rem" }}>
+                I bridge the gap between design and engineering — writing clean code
+                that translates ideas into fast, accessible, visually polished products.
+              </p>
+              <p style={{ color: "var(--text-2)", lineHeight: 1.85, fontSize: "0.95rem" }}>
+                Outside of work I love exploring the world — browse my{" "}
+                <a href="#/travel" className="link">travel gallery</a>. Feel free to
+                reach out on{" "}
+                <a
+                  href="https://www.linkedin.com/in/ghangka/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
+                >
+                  LinkedIn
+                </a>
+                .
+              </p>
+            </div>
           </div>
-          <div>
-            <h3
-              className="text-2xl font-bold text-transparent bg-clip-text 
-                bg-gradient-to-r from-green-400 to-blue-500"
+
+          {/* ── Right: skills ── */}
+          <div className="sr" style={{ transitionDelay: "0.18s" }}>
+            <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>Tech Stack</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              {skills.map((s) => (
+                <span key={s} className="pill">{s}</span>
+              ))}
+            </div>
+
+            {/* Currently seeking callout */}
+            <div
+              style={{
+                marginTop: "2rem",
+                padding: "1.25rem 1.5rem",
+                background: "var(--bg-2)",
+                border: "1px solid var(--border)",
+                borderLeft: "3px solid var(--orange)",
+                borderRadius: "6px",
+              }}
             >
-              10+
-            </h3>
-            <p>Happy Clients</p>
+              <p
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.68rem",
+                  color: "var(--orange)",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  marginBottom: "0.4rem",
+                }}
+              >
+                Status
+              </p>
+              <p style={{ color: "var(--text-2)", fontSize: "0.88rem", lineHeight: 1.6 }}>
+                Currently seeking <span style={{ color: "var(--text)" }}>new grad / junior</span> frontend
+                roles in Toronto or remote.
+              </p>
+            </div>
           </div>
-        </div> */}
-        {/* <h2 className="text-2xl font-bold mb-3">Contact </h2> */}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

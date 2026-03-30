@@ -1,10 +1,10 @@
+import { useEffect, useRef } from "react";
 import bigWaterfall from "../assets/Iceland/bigWaterfall.jpg";
 import castleRocks from "../assets/Iceland/castleRocks.jpg";
 import mountain from "../assets/Iceland/mountain.jpg";
 import mountainReflection from "../assets/Iceland/mountainReflection.jpg";
 import waterfall from "../assets/Iceland/waterfall.jpg";
 import waterfallRocks from "../assets/Iceland/waterfallRocks.jpg";
-
 import canoe from "../assets/Banff/canoe.jpg";
 import lakeMorraine from "../assets/Banff/lakeMorraine.jpg";
 import lakeMorraineCanoes from "../assets/Banff/lakeMorraineCanoes.jpg";
@@ -15,113 +15,83 @@ import woods from "../assets/Banff/woods.jpg";
 import Footer from "./Footer";
 
 const images = [
-  {
-    id: 1,
-    // caption: "pHPerfect",
-    image: bigWaterfall,
-  },
-  {
-    id: 2,
-    // caption: "To Do App",
-    image: castleRocks,
-  },
-  {
-    id: 3,
-    // caption: "TicTacToe Game",
-    image: mountain,
-  },
-  {
-    id: 4,
-    image: mountainReflection,
-  },
-  {
-    id: 5,
-    image: waterfall,
-  },
-  {
-    id: 6,
-    image: waterfallRocks,
-  },
-  {
-    id: 7,
-    image: canoe,
-  },
-  {
-    id: 8,
-    image: lakeMorraine,
-  },
-  {
-    id: 9,
-    image: lakeMorraineCanoes,
-  },
-  {
-    id: 10,
-    image: mountRobson,
-  },
-  {
-    id: 11,
-    image: peytoLake,
-  },
-  {
-    id: 12,
-    image: waterfallJasper,
-  },
-  {
-    id: 13,
-    image: woods,
-  },
+  { id: 1, image: bigWaterfall },
+  { id: 2, image: castleRocks },
+  { id: 3, image: mountain },
+  { id: 4, image: mountainReflection },
+  { id: 5, image: waterfall },
+  { id: 6, image: waterfallRocks },
+  { id: 7, image: canoe },
+  { id: 8, image: lakeMorraine },
+  { id: 9, image: lakeMorraineCanoes },
+  { id: 10, image: mountRobson },
+  { id: 11, image: peytoLake },
+  { id: 12, image: waterfallJasper },
+  { id: 13, image: woods },
 ];
 
 export default function Travel() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
+      { threshold: 0.05 }
+    );
+    ref.current?.querySelectorAll(".sr").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] pt-20" id="travel">
-      <div className="container mx-auto px-8 md:px-16 pb-20 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12">Gallery</h2>
-        <h1 className="text-lg mx-auto text-left max-w-6xl text-gray-700 mb-12">
-          This is a gallery of some photos I took during my travels. Currently
-          displayed are pictures from Banff National Park, Canada and Iceland.
-        </h1>
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="hover:shadow-lg 
-            transform transition-transform duration-300 hover:scale-105"
-            >
-              <img
-                src={image.image}
-                // alt={image.caption}
-                className="
-              w-full h-48 object-cover"
-              />
-              {/* <h3 className="text-1xl pr-4 text-white font-bold mb-2">
-                {image.caption}
-              </h3> */}
-        {/* </div> */}
-        {/* ))} */}
-        {/* </div> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {images
+    <div ref={ref} id="travel" style={{ paddingTop: "64px", minHeight: "100vh" }}>
+      <div className="container-main" style={{ padding: "5rem 2rem 6rem" }}>
+        {/* Header */}
+        <div className="sr" style={{ marginBottom: "3rem", position: "relative" }}>
+          <span
+            className="big-number"
+            style={{ fontSize: "clamp(5rem, 10vw, 8rem)", top: "-0.25em", right: 0, opacity: 0.35 }}
+          >
+            03
+          </span>
+          <p className="eyebrow">Beyond the Screen</p>
+          <h2 className="display-heading" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            Travel Gallery
+          </h2>
+          <span className="accent-line" />
+          <p
+            style={{
+              color: "var(--text-3)",
+              fontSize: "0.9rem",
+              lineHeight: 1.7,
+              maxWidth: "480px",
+              marginTop: "1.25rem",
+            }}
+          >
+            Snapshots from{" "}
+            <span style={{ color: "var(--text-2)" }}>Banff National Park</span> and{" "}
+            <span style={{ color: "var(--text-2)" }}>Iceland</span>.
+          </p>
+        </div>
+
+        {/* Masonry grid via CSS columns */}
+        <div className="sr travel-grid" style={{ transitionDelay: "0.1s" }}>
+          {[...images]
             .sort((a, b) => b.id - a.id)
-            .map((photo, index) => (
-              <div
-                key={index}
-                // className="aspect-[3/4] overflow-hidden rounded-2xl"
-                className=" aspect-[3/4] overflow-hidden rounded-md hover:shadow-lg 
-            transform transition-transform duration-300 hover:scale-105"
+            .map((photo) => (
+              <a
+                key={photo.id}
+                href={photo.image}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <a href={photo.image} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={photo.image}
-                    // alt={photo.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </a>
-              </div>
+                <img src={photo.image} alt={`Travel ${photo.id}`} />
+              </a>
             ))}
         </div>
       </div>
-      <Footer></Footer>
+
+      <div className="divider" />
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import tictactoe from "../assets/tictactoe.png";
 import phPerfect from "../assets/phPerfect.png";
 import toDo from "../assets/ToDo.png";
@@ -7,62 +8,156 @@ const projects = [
   {
     id: 1,
     name: "pHPerfect",
-    technologies: "TypeScript, Python, React Native",
+    description: "Real-time water quality monitoring mobile app using sensor data and data visualization.",
+    tech: ["TypeScript", "Python", "React Native"],
     image: phPerfect,
     github: "https://github.com/Riya-Anadkat/pHPerfect",
+    num: "01",
   },
   {
     id: 2,
     name: "To Do App",
-    technologies: "TypeScript, HTML, CSS",
+    description: "Minimal task management app with local storage, priority sorting, and clean UX.",
+    tech: ["TypeScript", "HTML", "CSS"],
     image: toDo,
     github: "https://github.com/Ghangka/To-Do-App",
+    num: "02",
   },
   {
     id: 3,
-    name: "TicTacToe Game",
-    technologies: "JavaScript, HTML, CSS",
+    name: "TicTacToe",
+    description: "Classic two-player game in the browser with smooth transitions and win detection.",
+    tech: ["JavaScript", "HTML", "CSS"],
     image: tictactoe,
-    github:
-      "https://github.com/Ghangka/Javascript-Projects/tree/main/TicTacToe",
+    github: "https://github.com/Ghangka/Javascript-Projects/tree/main/TicTacToe",
+    num: "03",
   },
 ];
 
 export default function Projects() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
+      { threshold: 0.08 }
+    );
+    ref.current?.querySelectorAll(".sr").forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="bg-[#F5F2EC] text-[#525252] pt-20" id="project">
-      <div className="container mx-auto px-8 md:px-16 pb-30 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-20">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+    <div ref={ref} id="project">
+      <div className="container-main" style={{ padding: "7rem 2rem" }}>
+        {/* Header */}
+        <div className="sr" style={{ marginBottom: "3.5rem", position: "relative" }}>
+          <span
+            className="big-number"
+            style={{ fontSize: "clamp(5rem, 10vw, 8rem)", top: "-0.25em", right: 0, opacity: 0.35 }}
+          >
+            02
+          </span>
+          <p className="eyebrow">Selected Work</p>
+          <h2 className="display-heading" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            Projects
+          </h2>
+          <span className="accent-line" />
+        </div>
+
+        {/* Grid */}
+        <div className="proj-grid">
+          {projects.map((p, i) => (
             <div
-              key={project.id}
-              className="bg-[#A9C4E2] p-6 rounded-lg hover:shadow-lg 
-            transform transition-transform duration-300 hover:scale-105"
+              key={p.id}
+              className="sr project-card"
+              style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <img
-                src={project.image}
-                alt={project.name}
-                className="rounded-lg mb-4 
-              w-full h-48 object-cover"
-              />
-              <h3 className="text-2xl text-[#525252] font-bold mb-2">
-                {project.name}
-              </h3>
-              <p className="text-[#525252] mb-4">{project.technologies}</p>
-              <a
-                href={project.github}
-                className="inline-block bg-[#598CBE] text-white px-4 py-2 rounded-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
+              {/* Image */}
+              <div style={{ height: "180px", overflow: "hidden", position: "relative", background: "var(--bg)" }}>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="card-img"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                {/* Number overlay */}
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "0.75rem",
+                    right: "0.85rem",
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: "0.65rem",
+                    color: "rgba(255,255,255,0.4)",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  {p.num}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div style={{ padding: "1.35rem" }}>
+                <h3
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    marginBottom: "0.45rem",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {p.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.82rem",
+                    color: "var(--text-3)",
+                    lineHeight: 1.65,
+                    marginBottom: "1rem",
+                  }}
+                >
+                  {p.description}
+                </p>
+
+                {/* Tech */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", marginBottom: "1.1rem" }}>
+                  {p.tech.map((t) => (
+                    <span
+                      key={t}
+                      style={{
+                        fontFamily: "'Space Mono', monospace",
+                        fontSize: "0.65rem",
+                        color: "var(--gold)",
+                        background: "var(--gold-dim)",
+                        padding: "3px 8px",
+                        borderRadius: "3px",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button className="btn btn-ghost" style={{ padding: "8px 16px", fontSize: "0.7rem", width: "100%" }}>
+                    View on GitHub →
+                  </button>
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <Footer></Footer>
+
+      <div className="divider" />
+      <Footer />
     </div>
   );
 }
